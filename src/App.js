@@ -1,25 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.css';
+import React, { useEffect, useState } from "react";
+import Card from "./Components/Card";
+import Formulario from "./Components/Formulario";
+import Tabela from "./Components/Tabela";
+import './style.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	const [listaUsuarios, setListaUsuarios] = useState([]);
+	const [nome, setNome] = useState('');
+	const [email, setEmail] = useState('');
+	const [senha, setSenha] = useState('');
+	const [id, setId] = useState('');
+
+	const dadosUsuario = (usuario) => {
+		setId(usuario.id);
+		setNome(usuario.name);
+		setEmail(usuario.email);
+		setSenha(usuario.password);
+	}
+
+	const limparDados = () => {
+		setNome('');
+		setEmail('');
+		setSenha('');
+		setId('');
+	}
+
+	const pegarUsuarios = () => {
+		axios.get("https://iot.14mob.com/api-fiap/public/index.php/users").then(response => {
+			setListaUsuarios(response.data.users);
+		})
+		limparDados();
+	}
+
+	// MÉTODO GET
+	useEffect(() => {
+		axios.get("https://iot.14mob.com/api-fiap/public/index.php/users").then(response => {
+			setListaUsuarios(response.data.users);
+		})
+	}, [])
+
+	return (
+		<div className="container">
+			<Card titulo="Cadastro de Usuários">
+				<Formulario
+					nome={nome}
+					setNome={setNome}
+					email={email}
+					setEmail={setEmail}
+					senha={senha}
+					setSenha={setSenha}
+					id={id}
+					setId={setId}
+					pegarUsuarios={pegarUsuarios}
+				/>
+			</Card>
+			<Card titulo="Lista de Usuários">
+				<Tabela
+					listaUsuarios={listaUsuarios}
+					setListaUsuarios={setListaUsuarios}
+					dadosUsuario={dadosUsuario}
+					pegarUsuarios={pegarUsuarios}
+				/>
+			</Card>
+		</div>
+	);
 }
 
 export default App;
