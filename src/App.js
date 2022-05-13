@@ -38,9 +38,7 @@ function App() {
 
 	// MÉTODO GET
 	useEffect(() => {
-		axios.get("https://iot.14mob.com/api-fiap/public/index.php/users").then(response => {
-			setListaUsuarios(response.data.users);
-		})
+		pegarUsuarios();
 	}, [])
 
 	return (
@@ -54,14 +52,12 @@ function App() {
 					senha={senha}
 					setSenha={setSenha}
 					id={id}
-					setId={setId}
 					pegarUsuarios={pegarUsuarios}
 				/>
 			</Card>
 			<Card titulo="Lista de Usuários">
 				<Tabela
 					listaUsuarios={listaUsuarios}
-					setListaUsuarios={setListaUsuarios}
 					dadosUsuario={dadosUsuario}
 					pegarUsuarios={pegarUsuarios}
 				/>

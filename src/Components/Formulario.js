@@ -8,7 +8,6 @@ function Formulario(props) {
             email: props.email,
             password: props.senha
         };
-        console.log("Tô em salvarUsuario");
 
         axios.post('https://iot.14mob.com/api-fiap/public/index.php/users', body)
             .then(response => {
@@ -26,7 +25,6 @@ function Formulario(props) {
             email: props.email,
             password: props.senha
         };
-        console.log("Tô em editarUsuario");
 
         axios.put(`https://iot.14mob.com/api-fiap/public/index.php/users/${props.id}`, body)
             .then(res => {

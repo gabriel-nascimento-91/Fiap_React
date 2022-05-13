@@ -1,4 +1,4 @@
-body {
+html, body {
     background: linear-gradient(125deg, orange,purple) no-repeat;
     height: 100%;
 }
