@@ -13,7 +13,6 @@ function Tabela(props) {
                 props.pegarUsuarios();
             })
             .catch(e => console.log(e));
-
     }
 
     return (

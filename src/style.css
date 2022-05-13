@@ -1,3 +1,4 @@
 body {
-    background: linear-gradient(125deg, orange,purple);
+    background: linear-gradient(125deg, orange,purple) no-repeat;
+    height: 100%;
 }

@@ -10,9 +10,9 @@ function Formulario(props) {
         };
         console.log("Tô em salvarUsuario");
 
-        axios.post('https://iot.14mob.com/api-fiap/public/index.php/users/', body)
-            .then(res => {
-                if (res.status === 201) {
+        axios.post('https://iot.14mob.com/api-fiap/public/index.php/users', body)
+            .then(response => {
+                if (response.status === 201) {
                     alert('Usuario cadastrado com sucesso!');
                     props.pegarUsuarios();
                 }
@@ -44,20 +44,33 @@ function Formulario(props) {
         }}>
             <div className="mb-3">
                 <label>Nome</label>
-                <input className="form-control" name="name" value={props.nome} onChange={e => props.setNome(e.target.value)} />
-
+                <input
+                    className="form-control"
+                    name="name"
+                    value={props.nome}
+                    onChange={e => props.setNome(e.target.value)}
+                />
             </div>
             <div className="mb-3">
                 <label>Email</label>
-                <input className="form-control" name="email" value={props.email} onChange={e => props.setEmail(e.target.value)} />
-
+                <input
+                    className="form-control"
+                    name="email"
+                    value={props.email}
+                    onChange={e => props.setEmail(e.target.value)}
+                />
             </div>
             <div className="mb-3">
                 <label>Senha</label>
-                <input className="form-control" type="password" name="password" value={props.senha} onChange={e => props.setSenha(e.target.value)} />
-
+                <input
+                    className="form-control"
+                    type="password"
+                    name="password"
+                    value={props.senha}
+                    onChange={e => props.setSenha(e.target.value)}
+                />
             </div>
-            <button type="submit" className="btn btn-primary" >Cadastrar Usuário</button>
+            <button type="submit" className="btn btn-primary">Cadastrar Usuário</button>
         </form>
 
     )
