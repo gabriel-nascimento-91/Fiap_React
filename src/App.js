@@ -1,5 +1,4 @@
 import axios from "axios";
-import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from "react";
 import Card from "./Components/Card";
 import Formulario from "./Components/Formulario";
@@ -38,7 +37,9 @@ function App() {
 
 	// MÉTODO GET
 	useEffect(() => {
-		pegarUsuarios();
+		axios.get("https://iot.14mob.com/api-fiap/public/index.php/users").then(response => {
+			setListaUsuarios(response.data.users);
+		});
 	}, [])
 
 	return (

@@ -9,7 +9,7 @@ function Tabela(props) {
     const removerUsuario = (id) => {
         axios.delete(`https://iot.14mob.com/api-fiap/public/index.php/users/${id}`)
             .then(res => {
-                alert("Usuario removido com sucesso!");
+                // alert("Usuario removido com sucesso!");
                 props.pegarUsuarios();
             })
             .catch(e => console.log(e));
